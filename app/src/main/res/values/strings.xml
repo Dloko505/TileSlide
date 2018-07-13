@@ -1,3 +1,8 @@
 <resources>
   <string name="app_name">Tile Slide</string>
+  <string name="reset_game_button">Reset</string>
+  <string name="new_game_button">New Game</string>
+  <string name="illicit_move">Cannot move from this position</string>
+  <string name="game_reset">Game has been reset!</string>
+  <string name="game_new">A new game has been started!</string>
 </resources>
