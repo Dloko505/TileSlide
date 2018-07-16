@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.tileslide.model;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Frame {
@@ -8,6 +9,7 @@ public class Frame {
   private Random rng;
   private Tile[][] start;
   private Tile[][] tiles;
+  private Tile[][] pts; // Prior To Scramble
   private int moves;
 
   public Frame(int size, Random rng) {
@@ -15,11 +17,22 @@ public class Frame {
     this.rng = rng;
     start = new Tile[size][size];
     tiles = new Tile[size][size];
+
     for (int i = 0; i < size * size - 1; i++) {
       tiles[i / size][i % size] = new Tile(i);
     }
     tiles[size - 1][size - 1] = null;
+    pts = Arrays.copyOf(tiles, 0);
     scramble();
+  }
+
+  public Frame(int size, Integer[] tileNums, Integer[] startNums, int saveMoves, Random rng) {
+    this.size = size;
+    this.rng = rng;
+    this.start = new Tile[size][size];
+    this.tiles = new Tile[size][size];
+    setTiles(tileNums);
+    setStart(startNums);
   }
 
   public void reset() {
@@ -27,7 +40,7 @@ public class Frame {
     moves = 0;
   }
 
-  public void scramble() {
+  private void scramble() {
     shuffle();
     if (!isParityEven()) {
       swapRandomPair();
@@ -36,8 +49,43 @@ public class Frame {
     moves = 0;
   }
 
+
+  public boolean isWin() {
+    boolean win = false;
+    for (int i = 0; i < tiles.length; i++) {
+      if (tiles[i/size][i % size] != null &&
+          tiles[i/size][i % size].getNumber() != i) {
+        win = false;
+        break;
+      } else {
+        win = true;
+      }
+    }
+    return win;
+  }
+
+  public Tile[][] getStart() {
+    return start;
+  }
+
   public Tile[][] getTiles() {
     return tiles;
+  }
+
+  private void setStart(Integer[] startNums) {
+    for (int i = 0; i < startNums.length; i++) {
+      start[i / size][i % size] =
+          (startNums[i] == null) ?
+              null : new Tile(startNums[i]);
+    }
+  }
+
+  private void setTiles(Integer[] tileNums) {
+    for (int i = 0; i < tileNums.length; i++) {
+      tiles[i / size][i % size] =
+          (tileNums[i] == null) ?
+              null : new Tile(tileNums[i]);
+    }
   }
 
   public int getMoves() {
@@ -61,6 +109,7 @@ public class Frame {
         && tiles[toRow][toCol] == null
     ) {
       swap(tiles, fromRow, fromCol, toRow, toCol);
+      ++moves;
       return true;
     }
     return false;

@@ -1,6 +1,5 @@
 package edu.cnm.deepdive.tileslide.model;
 
-import android.graphics.Bitmap;
 
 public class Tile {
 

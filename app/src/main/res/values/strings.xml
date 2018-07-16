@@ -5,4 +5,16 @@
   <string name="illicit_move">Cannot move from this position</string>
   <string name="game_reset">Game has been reset!</string>
   <string name="game_new">A new game has been started!</string>
+  <string name="you_won">You have completed the puzzle!</string>
+  <string name="moves_made">Moves: %1$d </string>
+  <string-array name="level_array">
+    <item>Easy</item>
+    <item>Medium</item>
+    <item>Hard</item>
+  </string-array>
+  <string-array name="image_array">
+    <item>Joe Schmo</item>
+    <item>Pirate</item>
+    <item>Zombie</item>
+  </string-array>
 </resources>

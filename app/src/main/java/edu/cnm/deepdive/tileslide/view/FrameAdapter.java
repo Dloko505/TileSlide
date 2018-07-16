@@ -11,17 +11,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import edu.cnm.deepdive.tileslide.R;
+import edu.cnm.deepdive.tileslide.controller.MainActivity;
 import edu.cnm.deepdive.tileslide.model.Frame;
 import edu.cnm.deepdive.tileslide.model.Tile;
 
 public class FrameAdapter extends ArrayAdapter<Tile> {
 
+  private int imageID;
   private int size;
   private Bitmap[] tileImages;
   private Bitmap noTileImage;
+  private Bitmap winImage;
   private Frame frame;
   private Tile[] tiles;
+
 
   public FrameAdapter(@NonNull Context context, @NonNull Frame frame) {
     super(context, R.layout.tile_item);
@@ -31,6 +36,10 @@ public class FrameAdapter extends ArrayAdapter<Tile> {
     copyModelTiles();
     addAll(tiles);
     sliceBitmap();
+  }
+
+  public int getImageID() {
+    return imageID;
   }
 
   @NonNull
@@ -67,7 +76,7 @@ public class FrameAdapter extends ArrayAdapter<Tile> {
   }
 
   private void sliceBitmap() {
-    Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.android_robot_circle);
+    Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.android_zombie);
     Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
     tileImages = new Bitmap[size * size];
     int imageWidth = bitmap.getWidth();
@@ -79,6 +88,7 @@ public class FrameAdapter extends ArrayAdapter<Tile> {
           row * imageHeight / size, imageWidth / size, imageHeight / size);
 
     }
+    winImage = Bitmap.createBitmap(tileImages[tileImages.length -1]);
     noTileImage = Bitmap.createBitmap(tileImages[tileImages.length - 1]);
     noTileImage.eraseColor(ContextCompat.getColor(getContext(), R.color.puzzleBackground));
   }
