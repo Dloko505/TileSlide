@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.tileslide.controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
   public static final String TILE_NUMS_KEY = "tileNums";
   public static final String START_NUMS_KEY = "startNums";
+  private static final int REQUEST_CODE = 1;
   private static int PUZZLE_SIZE = 4;
 
   private Frame frame;
@@ -57,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         }
       }
     });
-    RadioGroup selectImage = findViewById(
-        R.id.image_select);
     Button newGame = findViewById(R.id.new_game_button);
     newGame.setOnClickListener(new OnClickListener() {
       @Override
@@ -99,6 +99,16 @@ public class MainActivity extends AppCompatActivity {
     }
     setAdapter();
   }
+
+  public void pickImage(View view) {
+    Intent intent = new Intent();
+    intent.setType("image/*");
+    intent.setAction(Intent.ACTION_GET_CONTENT);
+    intent.addCategory(Intent.CATEGORY_OPENABLE);
+    startActivityForResult(intent, REQUEST_CODE);
+  }
+
+
 
   private void refresh() {
     setAdapter();

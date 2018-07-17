@@ -102,12 +102,12 @@ public class Frame {
   private boolean move(int fromRow, int fromCol, int toRow, int toCol) {
     if (
         tiles[fromRow][fromCol] != null
-        && toRow >= 0
-        && toRow < size
-        && toCol >= 0
-        && toCol < size
-        && tiles[toRow][toCol] == null
-    ) {
+            && toRow >= 0
+            && toRow < size
+            && toCol >= 0
+            && toCol < size
+            && tiles[toRow][toCol] == null
+        ) {
       swap(tiles, fromRow, fromCol, toRow, toCol);
       ++moves;
       return true;

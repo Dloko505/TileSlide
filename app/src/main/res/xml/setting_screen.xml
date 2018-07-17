@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+
+  <ListPreference
+    android:title="Select an image: "
+    android:summary="This will alter the image for the puzzle."
+    android:key="imageType"
+    android:defaultValue="Joe Schmo"
+    android:entries="@array/image_array"
+    android:entryValues="@array/image_array"/>
+  <ListPreference
+    android:title="Select difficulty: "
+    android:summary="This will alter the difficulty for the puzzle."
+    android:key="difficultyType"
+    android:defaultValue="3"
+    android:entries="@array/level_array"
+    android:entryValues="@array/level_array"/>
+
+
+</PreferenceScreen>
