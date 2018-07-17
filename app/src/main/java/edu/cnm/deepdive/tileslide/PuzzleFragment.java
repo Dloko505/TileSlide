@@ -3,7 +3,6 @@ package edu.cnm.deepdive.tileslide;
 
 
 import static edu.cnm.deepdive.tileslide.PuzzleFragment.IMAGE_SELECT_KEY;
-import static edu.cnm.deepdive.tileslide.PuzzleFragment.LEVEL_SELECT_KEY;
 import static edu.cnm.deepdive.tileslide.controller.MainActivity.START_NUMS_KEY;
 import static edu.cnm.deepdive.tileslide.controller.MainActivity.TILE_NUMS_KEY;
 
@@ -163,7 +162,7 @@ class PreferenceChangeListener implements OnSharedPreferenceChangeListener {
 
   @Override
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-    
+
       if (key.equals(IMAGE_SELECT_KEY)) {
       switch (Objects.requireNonNull(sharedPreferences.getString(key, null))) {
         case "Joe Schmo":
