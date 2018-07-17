@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import edu.cnm.deepdive.tileslide.PuzzleFragment;
 import edu.cnm.deepdive.tileslide.R;
 import edu.cnm.deepdive.tileslide.controller.MainActivity;
 import edu.cnm.deepdive.tileslide.model.Frame;
@@ -70,7 +71,7 @@ public class FrameAdapter extends ArrayAdapter<Tile> {
   }
 
   private void sliceBitmap() {
-    Drawable drawable = ContextCompat.getDrawable(getContext(), pickImage());
+    Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.android_zombie);
     Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
     tileImages = new Bitmap[size * size];
     int imageWidth = bitmap.getWidth();
